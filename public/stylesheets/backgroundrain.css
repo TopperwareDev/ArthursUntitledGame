@@ -1,0 +1,30 @@
+body {
+  background-image: url("../images/gloomyClouds.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: turquoise;
+}
+
+.rain {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  width: 100vw;
+  background-repeat: repeat;
+  background-size: auto;
+  background-image: url(../images/rain.png);
+  animation: rain 1s linear infinite;
+  opacity: 0.5;
+  background-color: transparent;
+  pointer-events: none;
+}
+
+@keyframes rain {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: -20% 100%;
+  }
+}
