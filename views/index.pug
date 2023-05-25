@@ -7,8 +7,26 @@ block content
     h1= title
     .coverimg
     p(class='paragraphShort') You must have an account before playing #{title}, click below to create an account or play.
+    a(href="/window") 
+      if username != undefined  
+        button(class='buttonLarge flashGreen') PLAY
+      else  
+        button(class='buttonLarge') PLAY
+    a(href="/account/login") 
+      button(class='buttonSlim') Login 
+    a(href="/account/register") 
+      button(class='buttonSlim') Register
     .statscontainer
       h1 Statistics 
+      if username != undefined  
+        p1 Welcome, #{username}
+        br
+        a(href="/account/logout") 
+          button(style="font-size: 8px;") Logout 
+      else 
+        p1(style="color: red;", class="warningtext") You are not logged in
+      br 
+      br
       label Online Players: 
       p1(id='onlinePlayers') 100
       br
@@ -17,6 +35,5 @@ block content
       br
       label Total Players: 
       p1(id='acrivePlayers') 100
-    a(href="/window") 
-      button(class='buttonLarge') PLAY
+
   .rain

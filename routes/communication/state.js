@@ -1,26 +1,32 @@
 const express = require("express");
 const router = express.Router();
-const WSU = require("../src/websocketUpgrade");
+const WSU = require("../../src/websocketUpgrade");
+
+let connections = 0;
 
 router.use("/", function (req, res, next) {
-    WSU.upgrade(req).then((ws) => {
-      // WebSocket connection established
-      console.log("Player connected streaming position");
+  WSU.upgrade(req)
+    .then((ws) => {
+      //on connection
+      console.log('New connection');
+      ++connections;
+      console.log(connections);
 
       ws.on("message", function incoming(message) {
         console.log("Received message:", message);
-        // Handle incoming WebSocket messages here
+
         ws.send(message);
       });
 
       ws.on("close", function close() {
         console.log("WebSocket connection closed");
-        // Handle WebSocket connection closure here
+        --connections;
+        console.log(connections);
       });
-
-  }).catch(() => {
-    next();
-  });
+    })
+    .catch(() => {
+      next();
+    });
 });
 
 module.exports = router;

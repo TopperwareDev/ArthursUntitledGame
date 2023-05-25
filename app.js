@@ -1,10 +1,19 @@
 var createError = require("http-errors");
 var express = require("express");
+const session = require('express-session');
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
 var app = express();
+
+//session
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: true,
+  store: new session.MemoryStore()
+}));
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -37,11 +46,14 @@ app.use(function (err, req, res, next) {
 module.exports = app;
 
 function routes(app) {
+  const authenticationMiddleware = require('./src/authenticationMiddleware');
   var indexRouter = require("./routes/index");
   var windowRouter = require("./routes/window");
-  var stateRouter = require("./routes/state")
+  var stateRouter = require("./routes/communication/state");
+  var accountRouter = require("./routes/account");
 
   app.use("/", indexRouter);
-  app.use("/window", windowRouter);
+  app.use("/window", authenticationMiddleware.isauthenticated, windowRouter);
   app.use("/state", stateRouter);
+  app.use("/account", accountRouter);
 }

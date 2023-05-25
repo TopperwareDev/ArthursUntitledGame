@@ -1,0 +1,25 @@
+extends presets/layout
+
+block content
+  link(rel='stylesheet' href='/stylesheets/standard.css')
+  link(rel='stylesheet' href='/stylesheets/backgroundrain.css')
+  .contentcenter
+    h1 Register
+    if message != undefined  
+      p(class='errortext') ERROR: #{message}
+    form(action="/account/register", method="post") 
+        h3 Email 
+        input(type="email", name="email", placeholder="email")
+        br
+        h3 Username 
+        input(type="text", name="username", placeholder="username")
+        h3 Password 
+        input(type="password", name="password", placeholder="password")
+        h3 Re-Password 
+        input(type="password", name="repassword", placeholder="repeate password")
+        br
+        br
+        input(type="submit", value="Register")
+    br
+    a(href="/") 
+      button(class='buttonSlim') Back 

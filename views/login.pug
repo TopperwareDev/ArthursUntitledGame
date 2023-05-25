@@ -1,0 +1,21 @@
+extends presets/layout
+
+block content
+  link(rel='stylesheet' href='/stylesheets/standard.css')
+  link(rel='stylesheet' href='/stylesheets/backgroundrain.css')
+  .contentcenter
+    h1 Login
+    if message != undefined  
+      p(class='errortext') ERROR: #{message}
+    form(action="/account/login", method="post") 
+        h3 Email 
+        input(type="email", name="email", placeholder="email")
+        br
+        h3 Password 
+        input(type="password", name="password", placeholder="password")
+        br
+        br
+        input(type="submit", value="Login")
+    br
+    a(href="/") 
+      button(class='buttonSlim') Back 
