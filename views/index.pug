@@ -1,8 +1,8 @@
-extends presets/layout
+extends presets/defaults/layout
 
 block content
-  link(rel='stylesheet' href='/stylesheets/standard.css')
-  link(rel='stylesheet' href='/stylesheets/backgroundrain.css')
+  link(rel='stylesheet' href='/clientWebpage/stylesheets/standard.css')
+  link(rel='stylesheet' href='/clientWebpage/stylesheets/backgroundrain.css')
   .contentcenter
     h1= title
     .coverimg
@@ -16,6 +16,8 @@ block content
       button(class='buttonSlim') Login 
     a(href="/account/register") 
       button(class='buttonSlim') Register
+    if username != undefined  
+      p(style="color: black;", class="warningtext") You are loggen in
     .statscontainer
       h1 Statistics 
       if username != undefined  
