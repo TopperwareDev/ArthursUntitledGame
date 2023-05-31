@@ -1,4 +1,4 @@
-const databaseManager = require("../dbmanager");
+const databaseManager = require("../dbconnector");
 const database = databaseManager.connection();
 
 /*

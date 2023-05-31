@@ -52,7 +52,7 @@ app.use(function (err, req, res, next) {
 module.exports = app;
 
 function routes(app) {
-  const authenticationMiddleware = require("./src/authenticationMiddleware");
+  const authenticationMiddleware = require("./src/database/authentication/authenticationMiddleware");
   var indexRouter = require("./routes/index");
   var windowRouter = require("./routes/window");
   var stateRouter = require("./routes/communication/state");

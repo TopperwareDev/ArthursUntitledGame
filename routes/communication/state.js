@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const WSU = require("../../src/websocketUpgrade");
+const WSU = require("../../src/clientGame/communication/websocketUpgrade");
 
 let connections = 0;
 

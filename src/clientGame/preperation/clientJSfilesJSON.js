@@ -46,6 +46,13 @@ function arrayToJson(array, callback) {
 }
 
 function JSONtoFILE(jsonData, filePath, callback) {
+  try {
+    //first remove file if exists
+    fs.unlinkSync(filePath);
+  } catch (error) {
+    console.log("JSON scripts did not previously exist, problem Fixed");
+  }
+  
   fs.writeFile(filePath, jsonData, (err) => {
     if (err) {
       console.error(
@@ -54,7 +61,6 @@ function JSONtoFILE(jsonData, filePath, callback) {
       );
       process.exit();
     } else {
-      console.log("JSON data written to file successfully.");
       callback();
     }
   });
