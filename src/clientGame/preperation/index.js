@@ -3,7 +3,7 @@
     express assings routes
 */
 
-const jsondependencies = require("./clientJSfilesJSON");
+const jsondependencies = require("./scriptsToJSON");
 
 function init(callback){
     /*

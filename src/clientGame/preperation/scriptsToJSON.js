@@ -8,9 +8,12 @@ const path = require("path");
 
 const directory = "./public/clientGame";
 const jsonFilePath = "./public/clientGame/scripts.json";
+const directoryIgnore = "preperation";
+const lowPriorityIndicator = "//LAST//";
 
 function findJSFiles(directoryPath, callback) {
   const filesArray = []; // Create an array to store the file paths
+  const filesArrayLowPriority = [];
 
   function traverseDirectory(currentPath) {
     const files = fs.readdirSync(currentPath);
@@ -19,14 +22,21 @@ function findJSFiles(directoryPath, callback) {
       const filePath = path.join(currentPath, file);
       const fileStat = fs.statSync(filePath);
 
-      if (fileStat.isDirectory()) {
+      if (fileStat.isDirectory() && !filePath.includes(directoryIgnore)) {
         traverseDirectory(filePath); // Recursive call for subdirectories
       } else {
         //does file contain .js
-        if (filePath.includes(".js")) {
+        if (filePath.endsWith(".js")) {
+          const fileContent = fs.readFileSync(filePath, "utf-8");
           //remove "public/"
-          const modifiedPath = filePath.replace("public/", "");
-          filesArray.push(modifiedPath); // Append file path to the array
+          let modifiedPath = filePath.replace(/\\/g, "/");
+          modifiedPath = modifiedPath.replace("public/", "");
+
+          if (fileContent.includes(lowPriorityIndicator)) {
+            filesArrayLowPriority.push(modifiedPath);
+          } else {
+            filesArray.push(modifiedPath);
+          }
         }
       }
     });
@@ -35,7 +45,8 @@ function findJSFiles(directoryPath, callback) {
   traverseDirectory(directoryPath); // Start traversing the directory
 
   if (callback) {
-    callback(filesArray); // Invoke the callback with the resulting array
+    const resultArray = filesArray.concat(filesArrayLowPriority);
+    callback(resultArray); // Invoke the callback with the resulting array
   }
 }
 
@@ -52,7 +63,7 @@ function JSONtoFILE(jsonData, filePath, callback) {
   } catch (error) {
     console.log("JSON scripts did not previously exist, problem Fixed");
   }
-  
+
   fs.writeFile(filePath, jsonData, (err) => {
     if (err) {
       console.error(

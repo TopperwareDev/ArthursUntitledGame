@@ -1,3 +1,7 @@
+/*
+  Proof of conept
+*/
+
 const socket = new WebSocket("ws://192.168.1.3/state");
 
 // WebSocket event handlers
