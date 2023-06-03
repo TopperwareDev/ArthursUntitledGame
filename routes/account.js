@@ -26,6 +26,7 @@ router.post("/login", function (req, res, next) {
       res.render("login", { message: "password or username incorrect" });
       return;
     }
+    req.session.accountID = result.id;
     req.session.username = result.username;
     res.redirect("/");
   });
@@ -70,6 +71,7 @@ router.post("/register", function (request, res, next) {
 });
 
 router.get("/logout", function (req, res, next) {
+  req.session.accountID = undefined;
   req.session.username = undefined;
   res.redirect("/");
 });

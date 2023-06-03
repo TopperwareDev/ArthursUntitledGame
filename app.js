@@ -4,7 +4,7 @@ const session = require("express-session");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-const preperationManager = require("./src/clientGame/preperation/index");
+const preperationManager = require("./src/clientGame/preperation/preperationManager");
 
 var app = express();
 
@@ -55,11 +55,11 @@ function routes(app) {
   const authenticationMiddleware = require("./src/database/authentication/authenticationMiddleware");
   var indexRouter = require("./routes/index");
   var windowRouter = require("./routes/window");
-  var stateRouter = require("./routes/communication/state");
   var accountRouter = require("./routes/account");
+  var networkRouter = require("./routes/network");
 
   app.use("/", indexRouter);
   app.use("/window", authenticationMiddleware.isauthenticated, windowRouter);
-  app.use("/state", stateRouter);
   app.use("/account", accountRouter);
+  app.use("/network", authenticationMiddleware.isauthenticated, networkRouter);
 }

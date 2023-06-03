@@ -1,12 +1,15 @@
 [
+  "clientGame/network/src/connect.js",
   "clientGame/player/player.js",
   "clientGame/player/sprites/preload.js",
-  "clientGame/window/game.js",
+  "clientGame/player/src/playerController.js",
   "clientGame/window/init.js",
   "clientGame/window/phaser.min.js",
   "clientGame/window/sceneLoader.js",
+  "clientGame/window/scenes/default/defaultSceneSettings.js",
+  "clientGame/window/scenes/loadingScene.js",
+  "clientGame/window/scenes/mainScene.js",
   "clientGame/window/src/phaserStyle.js",
   "clientGame/window/src/windowDimensions.js",
-  "clientGame/window/scenes/loadingScene.js",
-  "clientGame/window/scenes/mainScene.js"
+  "clientGame/window/game.js"
 ]

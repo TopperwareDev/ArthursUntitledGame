@@ -4,7 +4,7 @@ class SceneLoader {
       type: Phaser.AUTO,
       width: width,
       height: height,
-      scene: [MainScene],
+      scene: [MainScene, LoadingScene],
     };
 
     this.game = new Phaser.Game(this.config);

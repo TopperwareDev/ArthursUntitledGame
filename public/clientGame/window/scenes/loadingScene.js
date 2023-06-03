@@ -1,5 +1,3 @@
-//LAST// - Forces the script to be loaded last
-
 class LoadingScene extends Phaser.Scene {
   constructor() {
     super({ key: "LoadingScene" });

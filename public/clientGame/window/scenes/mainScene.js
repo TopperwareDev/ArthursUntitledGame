@@ -1,19 +1,18 @@
-//LAST// - Forces the script to be loaded last
-
 class MainScene extends Phaser.Scene {
   constructor() {
     super({ key: "MainScene" });
   }
 
   preload() {
-    // Load your assets for the main scene here
+    preloadPlayerSprites(this.load);
   }
 
   create() {
-    // Set up your game objects and display them on the screen
+    defaultSceneSettings(this);
+    this.player = new Player(this);
   }
 
-  update() {
-    // Update your game logic here
+  update(time, deltaTime) {
+    this.player.update(time, deltaTime);
   }
 }

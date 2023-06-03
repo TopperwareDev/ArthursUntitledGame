@@ -10,10 +10,12 @@ const directory = "./public/clientGame";
 const jsonFilePath = "./public/clientGame/scripts.json";
 const directoryIgnore = "preperation";
 const lowPriorityIndicator = "//LAST//";
+const highPriorityIndicator = "//HIGH//";
 
 function findJSFiles(directoryPath, callback) {
-  const filesArray = []; // Create an array to store the file paths
+  const filesArray = [];
   const filesArrayLowPriority = [];
+  const filesArrayHighPriority = [];
 
   function traverseDirectory(currentPath) {
     const files = fs.readdirSync(currentPath);
@@ -23,17 +25,17 @@ function findJSFiles(directoryPath, callback) {
       const fileStat = fs.statSync(filePath);
 
       if (fileStat.isDirectory() && !filePath.includes(directoryIgnore)) {
-        traverseDirectory(filePath); // Recursive call for subdirectories
+        traverseDirectory(filePath);
       } else {
-        //does file contain .js
         if (filePath.endsWith(".js")) {
           const fileContent = fs.readFileSync(filePath, "utf-8");
-          //remove "public/"
           let modifiedPath = filePath.replace(/\\/g, "/");
           modifiedPath = modifiedPath.replace("public/", "");
 
           if (fileContent.includes(lowPriorityIndicator)) {
             filesArrayLowPriority.push(modifiedPath);
+          } else if (fileContent.includes(highPriorityIndicator)) {
+            filesArrayHighPriority.push(modifiedPath);
           } else {
             filesArray.push(modifiedPath);
           }
@@ -42,11 +44,14 @@ function findJSFiles(directoryPath, callback) {
     });
   }
 
-  traverseDirectory(directoryPath); // Start traversing the directory
+  traverseDirectory(directoryPath);
 
   if (callback) {
-    const resultArray = filesArray.concat(filesArrayLowPriority);
-    callback(resultArray); // Invoke the callback with the resulting array
+    const resultArray = filesArrayHighPriority.concat(
+      filesArray,
+      filesArrayLowPriority
+    );
+    callback(resultArray);
   }
 }
 
