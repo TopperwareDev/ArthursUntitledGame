@@ -1,5 +1,4 @@
 function isauthenticated(req, res, next) {
-  console.log(req.session.id);
   if (req.session.accountID !== undefined) {
     next();
   } else {

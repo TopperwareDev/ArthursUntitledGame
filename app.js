@@ -61,5 +61,5 @@ function routes(app) {
   app.use("/", indexRouter);
   app.use("/window", authenticationMiddleware.isauthenticated, windowRouter);
   app.use("/account", accountRouter);
-  app.use("/network", authenticationMiddleware.isauthenticated, networkRouter);
+  app.use("/network", networkRouter);
 }

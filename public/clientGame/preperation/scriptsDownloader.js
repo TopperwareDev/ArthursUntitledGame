@@ -66,7 +66,7 @@ function downloadScript() {
         document.body.innerHTML = "";
 
         // Start game!
-        startWindow();
+        startGame();
       }, delay);
     }
   });

@@ -17,11 +17,14 @@ class Player {
       this.acceleration,
       this.deacceleration //slowdown of player
     );
+
+    this.networkPlayer = new NetworkPlayer();
   }
 
   update(time, deltaTime) {
     // Update player logic goes here
     this.playerController.update(time, deltaTime);
+    this.networkPlayer.networkUpdate(time, deltaTime, this);
   }
 
   updatePlayerPosition(){
