@@ -1,12 +1,11 @@
-const websocketUpgrade = require("./websocketUpgrade");
+const websocketUpgrade = require("../httpUpgradeToWebsocket");
 
 function websocket(req, onMessage, onClose, onConnect) {
   websocketUpgrade.upgrade(req).then((ws) => {
     onConnect(() => {
       /* 
-        onConnect function needs to validate websocket connection to user
+        returns onConnect, onClose, onMessage
       */
-
       ws.on("message", function incoming(message) {
         onMessage(message);
       });

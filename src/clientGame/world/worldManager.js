@@ -1,10 +1,13 @@
-const NM = require('../networking/networkManager');
+const networkManager = require("../networking/networkManager");
+const worldDirManager = require("./storage/src/worldDirManager");
 
 class WorldManager {
-    constructor(worldName){
-        this.worldName = worldName;
-        this.networkManager = new NM.NetworkManager();
-    }
+  constructor(worldID) {
+    worldDirManager.createNewWorldDIR(worldID, (worldID) => {
+      this.worldID = worldID;
+      this.networkManager = new networkManager.NetworkManager(this);
+    });
+  }
 }
 
-module.exports = {WorldManager,};
+module.exports = { WorldManager };

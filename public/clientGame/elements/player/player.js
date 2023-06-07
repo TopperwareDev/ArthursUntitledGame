@@ -13,12 +13,14 @@ class Player {
     this.deacceleration = 0.0005;
     this.playerController = new PlayerController(
       this, //player object
-      this.MaxSpeed, 
+      this.MaxSpeed,
       this.acceleration,
       this.deacceleration //slowdown of player
     );
 
-    this.networkPlayer = new NetworkPlayer();
+    //networking
+    this.networkManager = this.scene.networkManager;
+    this.networkPlayer = new NetworkPlayer(this);
   }
 
   update(time, deltaTime) {
@@ -27,7 +29,7 @@ class Player {
     this.networkPlayer.networkUpdate(time, deltaTime, this);
   }
 
-  updatePlayerPosition(){
+  updatePlayerPosition() {
     this.sprite.setPosition(this.x, this.y);
   }
 }

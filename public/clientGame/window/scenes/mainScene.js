@@ -9,6 +9,8 @@ class MainScene extends Phaser.Scene {
 
   create() {
     defaultSceneSettings(this);
+    this.networkManager = new NetworkManager(this);
+    //this.sprite1 = this.scene.add.sprite(500, 500, "player");
     this.player = new Player(this);
   }
 

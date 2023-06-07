@@ -1,27 +1,28 @@
 class NetworkPlayer {
-  constructor() {
+  constructor(player) {
     this.isOwner = true;
     this.networkUpdateFrequency = 1; //# pr seccond
     this.previousNetworkUpdate = 0;
 
-    this.networkPlayer_x = 0;
-    this.networkPlayer_y = 0;
+    this.player = player;
+    this.networkManager = player.networkManager;
   }
 
   networkUpdate(time, deltaTime, player) {
-    if (this.checkUpdate(deltaTime)) {
-        console.log('network update now');
-    }
+    this.updateCycle(deltaTime, () => {
+      this.networkManager.emitEvent("networkPlayer", {
+        playerX: this.player.x,
+        playerY: this.player.y,
+      });
+    });
   }
 
-  checkUpdate(deltaTime) {
+  updateCycle(deltaTime, callback) {
     this.previousNetworkUpdate += deltaTime;
     const updateInterval = 1000 / this.networkUpdateFrequency;
     if (this.previousNetworkUpdate >= updateInterval) {
       this.previousNetworkUpdate = 0;
-      return true;
-    } else {
-      return false;
+      callback();
     }
   }
 }

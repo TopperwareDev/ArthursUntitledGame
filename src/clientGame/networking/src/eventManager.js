@@ -7,11 +7,38 @@
 
     Events are given as "{event: 'event_name', data: {}}"
 */
+const networkPlayersManager = require("../events/networkPlayersManager");
 
-function EventHandler(message){
-    const json = message.stringify(message);
-    
+class EventManager {
+  constructor(worldID) {
+    this.worldID = worldID;
+    this.networkPlayersManager = new networkPlayersManager.NetworkPlayersManager();
+  }
 
+  EventHandler(message, req, websocketconnection) {
+    const parsedMessage = this.parseMessage(message);
+    const accountID = req.session.accountID;
+    const sessionID = req.session.id;
+    switch (parsedMessage.event) {
+      case "networkPlayer":
+        const parsedMessageData = parsedMessage.data;
+        this.networkPlayersManager.networkPlayerUpdate(
+          parsedMessageData,
+          accountID,
+          sessionID,
+          websocketconnection
+        );
+        break;
+    }
+  }
+
+  parseMessage(onMessage) {
+    const messageBuffer = Buffer.from(onMessage);
+    const decodedMessage = messageBuffer.toString("utf8");
+    const parsedDecodedMessage = JSON.parse(decodedMessage);
+    parsedDecodedMessage.data = JSON.parse(parsedDecodedMessage.data);
+    return parsedDecodedMessage;
+  }
 }
 
-module.exports = {EventHandler,};
+module.exports = { EventManager };

@@ -6,7 +6,7 @@ function addPhaserStylesheet() {
   
     const stylesheet = document.createElement('link');
     stylesheet.rel = 'stylesheet';
-    stylesheet.href = 'clientGame/window/src/phaserwindow.css';
+    stylesheet.href = 'clientGame/window/src/style/phaserwindow.css';
     stylesheet.id = 'phaserstylesheet';
     document.head.appendChild(stylesheet);
   }

@@ -1,34 +1,26 @@
-const websocketManager = require("./src/websocketManager");
-const connectedPlayersManager = require("./src/connectedplayersManager");
+const eventManager = require("./src/eventManager");
+const websocketEvents = require("./src/websocketEvents");
 
 class NetworkManager {
-  constructor() {
-    this.players = [];
+  constructor(world) {
+    this.worldID = world.worldID;
+    this.eventManager = new eventManager.EventManager(this.worldID);
   }
 
-  websocket(req, res) {
-    websocketManager.websocket(
+  websocketHandler(req, res) {
+    let websocketconnection;
+    websocketEvents.websocketEvents(
       req,
-      (onMessage) => {
-        //Websocket message
-        console.log(onMessage);
+      function OnConnect(websocketConnection) {
+        websocketconnection = websocketConnection;
+
+      }.bind(this),
+      function OnDissconnect() {
+        //connection to user has been
       },
-      (onClose) => {
-        //onClose
-        connectedPlayersManager.removePlayer(this.players, req);
-      },
-      (authenticated) => {
-        //onConnect
-        connectedPlayersManager
-          .addPlayer(this.players, req)
-          .then(() => {
-            authenticated();
-          })
-          .catch((err) => {
-            console.log("Error: " + err);
-            res.send(err);
-          });
-      }
+      function OnMessage(msg) {
+        this.eventManager.EventHandler(msg, req, websocketconnection);
+      }.bind(this),
     );
   }
 }
