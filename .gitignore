@@ -1,5 +1,3 @@
-public/
-
 # Logs
 logs
 *.log
@@ -43,6 +41,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+/public/clientGame/scripts.json
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/

@@ -4,7 +4,7 @@
   "clientGame/elements/player/src/playerController.js",
   "clientGame/elements/player/src/preload.js",
   "clientGame/networking/events/networkPlayersManager.js",
-  "clientGame/networking/networkManager.js",
+  "clientGame/nsetworking/networkManager.js",
   "clientGame/networking/networkObjects/networkPlayer.js",
   "clientGame/networking/src/eventFormatter.js",
   "clientGame/networking/src/eventManager.js",
