@@ -2,22 +2,21 @@
     This file will download required scripts to run game
     A list of all required scripts can be found in clientGame/scripts.json
 */
-
 const jsonPath = "clientGame/scripts.json";
 const delay = 1000;
 let total_scripts = 0;
 let downloaded_scripts = 0;
-let json;
+let scriptsDataJSON;
 
 fetch(jsonPath)
   .then((response) => response.json())
   .then((data) => {
-    showFiles(data);
-    json = data;
-    downloadScript();
+    scriptsDataJSON = data;
+    showFiles(scriptsDataJSON);
+    downloadScript(scriptsDataJSON);
   });
 
-function showFiles(json) {
+function showFiles(scriptsDataJSON) {
   //Add css
   const downloadScriptCss = document.createElement("link");
   downloadScriptCss.rel = "stylesheet";
@@ -26,7 +25,7 @@ function showFiles(json) {
 
   //Total scripts text
   const scriptsInfo = document.createElement("p");
-  total_scripts = json.length;
+  total_scripts = scriptsDataJSON.length;
   scriptsInfo.innerHTML = "Total Scripts: " + total_scripts;
   document.body.appendChild(scriptsInfo);
 
@@ -35,12 +34,30 @@ function showFiles(json) {
   container.className = "container";
   document.body.appendChild(container);
 
-  json.forEach((script) => {
+  scriptsDataJSON.forEach((scriptDataJSON) => {
+    const scriptPath = scriptDataJSON.path;
+    let scriptType = scriptDataJSON.type;
+
+    if(scriptType == ''){
+      scriptType = 'Not Module';
+    }else{
+      scriptType = 'Module';
+    }
+    
     const element = document.createElement("div");
     element.className = "element";
-    element.id = script;
-    element.innerHTML = extractFileName(script);
+    element.id = scriptPath;
     container.appendChild(element);
+
+    const elementHeader = document.createElement('p1');
+    elementHeader.className = 'elementHeader';
+    elementHeader.innerHTML = extractFileName(scriptPath);
+    element.appendChild(elementHeader);
+
+    const elementSubtext = document.createElement('p1');
+    elementSubtext.className = 'elementSubtext';
+    elementSubtext.innerHTML = 'Type: ' + scriptType;
+    element.appendChild(elementSubtext);
   });
 
   function extractFileName(filePath) {
@@ -49,10 +66,14 @@ function showFiles(json) {
   }
 }
 
-function downloadScript() {
-  const scriptPath = json[downloaded_scripts];
+function downloadScript(scriptsDataJSON) {
+  const scriptDataJSON = scriptsDataJSON[downloaded_scripts];
+  const scriptPath = scriptDataJSON.path;
+  const scriptType = scriptDataJSON.type;
+
   const script = document.createElement("script");
   script.src = scriptPath;
+  script.type = scriptType;
   document.head.appendChild(script);
   script.addEventListener("load", () => {
     const element = document.getElementById(scriptPath);
@@ -60,13 +81,15 @@ function downloadScript() {
     ++downloaded_scripts;
 
     if (downloaded_scripts < total_scripts) {
-      downloadScript(); // Call downloadScript recursively for the next script
+      downloadScript(scriptsDataJSON); // Call downloadScript recursively for the next script
     } else {
       setTimeout(() => {
         document.body.innerHTML = "";
 
-        // Start game!
-        startGame();
+        import('../window/init/gameInitiator.js').then((gameInitiator) => {
+          // Start game!
+          gameInitiator.startGame();
+        })
       }, delay);
     }
   });

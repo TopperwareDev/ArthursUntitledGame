@@ -1,4 +1,4 @@
-class PlayerController {
+export class PlayerController {
   constructor(player, maxSpeed, acceleration, deacceleration) {
     this.player = player;
     this.maxSpeed = maxSpeed;

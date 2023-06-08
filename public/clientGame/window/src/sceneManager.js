@@ -1,20 +1,28 @@
-class SceneManager {
+export class SceneManager {
   constructor() {
-    addPhaserStylesheet(); //canvas css
+    this.imports(() => {
+      this.phaserStyleScript.addPhaserStylesheet(); // canvas css
 
-    this.config = {
-      type: Phaser.AUTO,
-      width: getWidth(),
-      height: getHeight(),
-      scene: [MainScene, LoadingScene],
-    };
-
-    this.game = new Phaser.Game(this.config);
+      this.config = {
+        type: Phaser.AUTO,
+        width: this.windowDimensionsScript.getWidth(),
+        height: this.windowDimensionsScript.getHeight(),
+        scene: [new this.mainSceneScript.MainScene(this), this.LoadingSceneScript.LoadingScene],
+      };
+      this.game = new Phaser.Game(this.config);
+    });
   }
 
-  stop(){
-    this.game.destroy();
-    //remove canvas 
-    document.body.innerHTML = '<h1>ERROR CONNECTING TO SERVER PLEASE RETURN TO HOME PAGE. </h1> <br> This is most likely because someone is already playing on this account.';
+  async imports(callback) {
+    try {
+      this.phaserStyleScript = await import("./style/phaserStyle.js");
+      this.gameScript = await import("../../game.js");
+      this.windowDimensionsScript = await import("./style/windowDimensions.js");
+      this.mainSceneScript = await import("../scenes/mainScene.js");
+      this.LoadingSceneScript = await import("../scenes/loadingScene.js");
+      callback();
+    } catch (error) {
+      console.error("Failed to import scripts:", error);
+    }
   }
 }

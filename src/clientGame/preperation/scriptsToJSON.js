@@ -11,6 +11,7 @@ const jsonFilePath = "./public/clientGame/scripts.json";
 const directoryIgnore = "preperation";
 const lowPriorityIndicator = "//LAST//";
 const highPriorityIndicator = "//HIGH//";
+const isNotModule = "//NOT-MODULE//";
 
 function findJSFiles(directoryPath, callback) {
   const filesArray = [];
@@ -31,13 +32,23 @@ function findJSFiles(directoryPath, callback) {
           const fileContent = fs.readFileSync(filePath, "utf-8");
           let modifiedPath = filePath.replace(/\\/g, "/");
           modifiedPath = modifiedPath.replace("public/", "");
+          const scriptJSON = {path: undefined, type: undefined};
+
+          if(fileContent.includes(isNotModule)){
+            scriptJSON.type = '';
+          }else{
+            scriptJSON.type = 'module';
+          }
 
           if (fileContent.includes(lowPriorityIndicator)) {
-            filesArrayLowPriority.push(modifiedPath);
+            scriptJSON.path = modifiedPath;
+            filesArrayLowPriority.push(scriptJSON);
           } else if (fileContent.includes(highPriorityIndicator)) {
-            filesArrayHighPriority.push(modifiedPath);
+            scriptJSON.path = modifiedPath;
+            filesArrayHighPriority.push(scriptJSON);
           } else {
-            filesArray.push(modifiedPath);
+            scriptJSON.path = modifiedPath;
+            filesArray.push(scriptJSON);
           }
         }
       }

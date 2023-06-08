@@ -1,4 +1,4 @@
-function websocketconnect(onConnect, onDissconnect, onMessage) {
+export function websocketconnect(onConnect, onDissconnect, onMessage) {
   const url = `ws:${window.location.host}/network/websocket`;
   const websocket = new WebSocket(url);
   

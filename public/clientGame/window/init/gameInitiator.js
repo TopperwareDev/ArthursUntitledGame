@@ -4,7 +4,8 @@
     Window referes to the window/broser where the game is played in
 */
 
-function startGame() {
-  const game = new Game();
-
+export function startGame() {
+  import("../../game.js").then((gameScript) => {
+    const Game = new gameScript.Game();
+  });
 }

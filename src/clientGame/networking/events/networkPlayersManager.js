@@ -85,6 +85,7 @@ class NetworkPlayersManager {
 
     networkPlayer.x = networkPlayerData.playerX;
     networkPlayer.y = networkPlayerData.playerY;
+    networkPlayer.accountID = networkPlayerData.accountID;
     const currentTime = new Date().getTime();
     networkPlayer.timeSinceLastUpdate = currentTime;
   }

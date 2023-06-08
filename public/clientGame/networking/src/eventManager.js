@@ -1,4 +1,4 @@
-class EventManager {
+export class EventManager {
   constructor(mainScene) {
     this.mainScene = mainScene;
     this.networkPlayersManager = new NetworkplayersManager(this.mainScene);

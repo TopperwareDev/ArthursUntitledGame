@@ -1,4 +1,4 @@
-class NetworkPlayer {
+export class NetworkPlayer {
   constructor(player) {
     this.isOwner = true;
     this.networkUpdateFrequency = 1; //# pr seccond

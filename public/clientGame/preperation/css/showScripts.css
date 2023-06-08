@@ -19,8 +19,21 @@
   margin-bottom: 5px;
   background-color: gray;
   transition: background-color 0.5s, transform 0.5s;
+  display: flex;
+  flex-direction: column;
+}
+
+.elementHeader{
+  position: relative;
   font-family: 'Source Code Pro', monospace;
   font-size: 10px;
+  overflow: hidden;
+}
+
+.elementSubtext{
+  position: relative;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 8px;
   overflow: hidden;
 }
 

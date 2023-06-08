@@ -1,4 +1,4 @@
-function addPhaserStylesheet() {
+export function addPhaserStylesheet() {
     const oldStylesheet = document.getElementById('phaserstylesheet');
     if (oldStylesheet) {
       document.head.removeChild(oldStylesheet);

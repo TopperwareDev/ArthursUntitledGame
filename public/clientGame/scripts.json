@@ -1,20 +1,82 @@
 [
-  "clientGame/window/src/libs/phaser.min.js",
-  "clientGame/elements/player/player.js",
-  "clientGame/elements/player/src/playerController.js",
-  "clientGame/elements/player/src/preload.js",
-  "clientGame/networking/events/networkPlayersManager.js",
-  "clientGame/networking/networkManager.js",
-  "clientGame/networking/networkObjects/networkPlayer.js",
-  "clientGame/networking/src/eventFormatter.js",
-  "clientGame/networking/src/eventManager.js",
-  "clientGame/networking/src/websocketEvents.js",
-  "clientGame/window/init/gameInitiator.js",
-  "clientGame/window/scenes/loadingScene.js",
-  "clientGame/window/scenes/mainScene.js",
-  "clientGame/window/scenes/src/defaultSceneSettings.js",
-  "clientGame/window/src/sceneManager.js",
-  "clientGame/window/src/style/phaserStyle.js",
-  "clientGame/window/src/style/windowDimensions.js",
-  "clientGame/game.js"
+  {
+    "path": "clientGame/window/src/libs/phaser.min.js",
+    "type": ""
+  },
+  {
+    "path": "clientGame/elements/networkPlayer/networkPlayerElement.js",
+    "type": "module"
+  },
+  {
+    "path": "clientGame/elements/networkPlayer/src/networkPlayerElementPreload.js",
+    "type": "module"
+  },
+  {
+    "path": "clientGame/elements/player/player.js",
+    "type": "module"
+  },
+  {
+    "path": "clientGame/elements/player/src/playerController.js",
+    "type": "module"
+  },
+  {
+    "path": "clientGame/elements/player/src/preloadPlayer.js",
+    "type": "module"
+  },
+  {
+    "path": "clientGame/networking/events/networkPlayersManager.js",
+    "type": "module"
+  },
+  {
+    "path": "clientGame/networking/networkManager.js",
+    "type": "module"
+  },
+  {
+    "path": "clientGame/networking/networkObjects/networkPlayer.js",
+    "type": "module"
+  },
+  {
+    "path": "clientGame/networking/src/eventFormatter.js",
+    "type": "module"
+  },
+  {
+    "path": "clientGame/networking/src/eventManager.js",
+    "type": "module"
+  },
+  {
+    "path": "clientGame/networking/src/websocketEvents.js",
+    "type": "module"
+  },
+  {
+    "path": "clientGame/window/init/gameInitiator.js",
+    "type": "module"
+  },
+  {
+    "path": "clientGame/window/scenes/loadingScene.js",
+    "type": "module"
+  },
+  {
+    "path": "clientGame/window/scenes/mainScene.js",
+    "type": "module"
+  },
+  {
+    "path": "clientGame/window/scenes/src/defaultSceneSettings.js",
+    "type": "module"
+  },
+  {
+    "path": "clientGame/window/src/sceneManager.js",
+    "type": "module"
+  },
+  {
+    "path": "clientGame/window/src/style/phaserStyle.js",
+    "type": "module"
+  },
+  {
+    "path": "clientGame/window/src/style/windowDimensions.js",
+    "type": "module"
+  },
+  {
+    "path": "clientGame/game.js",
+    "type": "module"
+  }
 ]
