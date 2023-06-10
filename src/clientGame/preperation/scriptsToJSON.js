@@ -1,14 +1,10 @@
-/*
-    Once the server starts this a json will all required scrips is created
-    such that the client can download all required scripts easily
-*/
-
 const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 
 const directory = "./public/clientGame";
 const jsonFilePath = "./public/clientGame/scripts.json";
-const directoryIgnore = "preperation";
+const directoryIgnore = "preparation";
 const lowPriorityIndicator = "//LAST//";
 const highPriorityIndicator = "//HIGH//";
 
@@ -24,21 +20,37 @@ function findJSFiles(directoryPath, callback) {
       const filePath = path.join(currentPath, file);
       const fileStat = fs.statSync(filePath);
 
-      if (fileStat.isDirectory() && !filePath.includes(directoryIgnore)) {
-        traverseDirectory(filePath);
-      } else {
-        if (filePath.endsWith(".js")) {
-          const fileContent = fs.readFileSync(filePath, "utf-8");
-          let modifiedPath = filePath.replace(/\\/g, "/");
-          modifiedPath = modifiedPath.replace("public/", "");
+      if (fileStat.isDirectory()) {
+        const directoryName = path.basename(filePath);
 
-          if (fileContent.includes(lowPriorityIndicator)) {
-            filesArrayLowPriority.push(modifiedPath);
-          } else if (fileContent.includes(highPriorityIndicator)) {
-            filesArrayHighPriority.push(modifiedPath);
-          } else {
-            filesArray.push(modifiedPath);
-          }
+        if (directoryName !== directoryIgnore) {
+          traverseDirectory(filePath);
+        }
+      } else if (filePath.endsWith(".js")) {
+        const fileContent = fs.readFileSync(filePath, "utf-8");
+        const modifiedPath = filePath
+          .replace(/\\/g, "/")
+          .replace("public/", "");
+        const fileJSON = {
+          filePath: undefined,
+          fileHash: undefined,
+          fileSize_bytes: undefined,
+          fileSize_megabytes: undefined,
+        };
+
+        fileJSON.fileHash = calculateSHA256Hash(fileContent);
+        fileJSON.fileSize_bytes = fileStat.size;
+        fileJSON.fileSize_megabytes = bytesToMegabytes(fileStat.size);
+
+        if (fileContent.includes(lowPriorityIndicator)) {
+          fileJSON.filePath = modifiedPath;
+          filesArrayLowPriority.push(fileJSON);
+        } else if (fileContent.includes(highPriorityIndicator)) {
+          fileJSON.filePath = modifiedPath;
+          filesArrayHighPriority.push(fileJSON);
+        } else {
+          fileJSON.filePath = modifiedPath;
+          filesArray.push(fileJSON);
         }
       }
     });
@@ -57,16 +69,15 @@ function findJSFiles(directoryPath, callback) {
 
 function arrayToJson(array, callback) {
   const json = JSON.stringify(array, null, 2);
-
   callback(json);
 }
 
 function JSONtoFILE(jsonData, filePath, callback) {
   try {
-    //first remove file if exists
+    // Remove the file if it exists
     fs.unlinkSync(filePath);
   } catch (error) {
-    console.log("JSON scripts did not previously exist, problem Fixed");
+    console.log("JSON scripts did not previously exist. Problem fixed.");
   }
 
   fs.writeFile(filePath, jsonData, (err) => {
@@ -82,14 +93,27 @@ function JSONtoFILE(jsonData, filePath, callback) {
   });
 }
 
+function bytesToMegabytes(bytes) {
+  const megabytes = bytes / (1024 * 1024);
+  return parseFloat(megabytes.toFixed(2));
+}
+
 function init(callback) {
+  // Find all JavaScript files in the directory and generate the JSON file
   findJSFiles(directory, (array) => {
-    arrayToJson(array, (JSON) => {
-      JSONtoFILE(JSON, jsonFilePath, () => {
+    arrayToJson(array, (json) => {
+      JSONtoFILE(json, jsonFilePath, () => {
         callback();
       });
     });
   });
+}
+
+function calculateSHA256Hash(input) {
+  const hash = crypto.createHash("sha256");
+  hash.update(input);
+  const hashValue = hash.digest("hex");
+  return hashValue;
 }
 
 module.exports = { init };

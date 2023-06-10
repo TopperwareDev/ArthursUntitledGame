@@ -1,20 +1,110 @@
 [
-  "clientGame/window/src/libs/phaser.min.js",
-  "clientGame/elements/player/player.js",
-  "clientGame/elements/player/src/playerController.js",
-  "clientGame/elements/player/src/preload.js",
-  "clientGame/networking/events/networkPlayersManager.js",
-  "clientGame/nsetworking/networkManager.js",
-  "clientGame/networking/networkObjects/networkPlayer.js",
-  "clientGame/networking/src/eventFormatter.js",
-  "clientGame/networking/src/eventManager.js",
-  "clientGame/networking/src/websocketEvents.js",
-  "clientGame/window/init/gameInitiator.js",
-  "clientGame/window/scenes/loadingScene.js",
-  "clientGame/window/scenes/mainScene.js",
-  "clientGame/window/scenes/src/defaultSceneSettings.js",
-  "clientGame/window/src/sceneManager.js",
-  "clientGame/window/src/style/phaserStyle.js",
-  "clientGame/window/src/style/windowDimensions.js",
-  "clientGame/game.js"
+  {
+    "filePath": "clientGame/window/src/libs/phaser.min.js",
+    "fileHash": "a9d136f05471a7bc8faaf2208b5c413e39a2d83ff034d8ba4ac2d2686062ce2e",
+    "fileSize_bytes": 2615599,
+    "fileSize_megabytes": 2.49
+  },
+  {
+    "filePath": "clientGame/elements/player/player.js",
+    "fileHash": "8eff69f2f488acecbf9ac4575a3253e16a43593c159a37b46d294e78dab23918",
+    "fileSize_bytes": 941,
+    "fileSize_megabytes": 0
+  },
+  {
+    "filePath": "clientGame/elements/player/src/playerController.js",
+    "fileHash": "7cd21ca2a9dece912b8a6b6409367805a07464bff184b023096d2a5178e10570",
+    "fileSize_bytes": 2938,
+    "fileSize_megabytes": 0
+  },
+  {
+    "filePath": "clientGame/elements/player/src/preload.js",
+    "fileHash": "19fb4f2c67cd628edbe482c458b0d4b20138f7e64f491acf6979d518e7697d0f",
+    "fileSize_bytes": 110,
+    "fileSize_megabytes": 0
+  },
+  {
+    "filePath": "clientGame/networking/events/networkPlayersManager.js",
+    "fileHash": "51b1b931e29f522e84a413176a63b5b960b864bbe72ac3b9cf1d1cdb23a7a3f7",
+    "fileSize_bytes": 742,
+    "fileSize_megabytes": 0
+  },
+  {
+    "filePath": "clientGame/networking/networkManager.js",
+    "fileHash": "194f0d3ca24c4f3465e3920efd7a2af3c25c99e4672b61aa3a7b7e93caf134b7",
+    "fileSize_bytes": 770,
+    "fileSize_megabytes": 0
+  },
+  {
+    "filePath": "clientGame/networking/networkObjects/networkPlayer.js",
+    "fileHash": "b69068d2de987ddc240778791911f568a4a98f7c7f34ac4a8278c15a373b33f9",
+    "fileSize_bytes": 763,
+    "fileSize_megabytes": 0
+  },
+  {
+    "filePath": "clientGame/networking/src/eventFormatter.js",
+    "fileHash": "e496babea3af1c034c17d868be409d19c073553030f06c9fe756ac6a96f726bf",
+    "fileSize_bytes": 236,
+    "fileSize_megabytes": 0
+  },
+  {
+    "filePath": "clientGame/networking/src/eventManager.js",
+    "fileHash": "aa2e4d6c9ff01a7365c0f9422b7321d4b15e45ef6dc3355039d9a51f0442bb58",
+    "fileSize_bytes": 704,
+    "fileSize_megabytes": 0
+  },
+  {
+    "filePath": "clientGame/networking/src/websocketEvents.js",
+    "fileHash": "ba4d85abfd9db4563912be6cc0cb9c0dc02e9cf132f3e7d7e589fb87db7b8a61",
+    "fileSize_bytes": 565,
+    "fileSize_megabytes": 0
+  },
+  {
+    "filePath": "clientGame/window/init/gameInitiator.js",
+    "fileHash": "bbb64e063e048c16a89a28d4f02e8ffc86b89ba94155a3191baff1c65b3547b8",
+    "fileSize_bytes": 200,
+    "fileSize_megabytes": 0
+  },
+  {
+    "filePath": "clientGame/window/scenes/loadingScene.js",
+    "fileHash": "5f8e667044993f4f05c6f31acc18e8dacb0e934dd6695534dbcadb9fd8cb695c",
+    "fileSize_bytes": 334,
+    "fileSize_megabytes": 0
+  },
+  {
+    "filePath": "clientGame/window/scenes/mainScene.js",
+    "fileHash": "4a0eb045cc2141be5db26ec489a687a392077c3a73c4f0a90ca63fbbea4f798b",
+    "fileSize_bytes": 448,
+    "fileSize_megabytes": 0
+  },
+  {
+    "filePath": "clientGame/window/scenes/src/defaultSceneSettings.js",
+    "fileHash": "108407c401391845022159ab2f68cf109f42601edc3b25101210aea3b7062871",
+    "fileSize_bytes": 95,
+    "fileSize_megabytes": 0
+  },
+  {
+    "filePath": "clientGame/window/src/sceneManager.js",
+    "fileHash": "531caed57a22cd452d3357be230c379c7a4ea9eadf83e460c5547337bd39c284",
+    "fileSize_bytes": 533,
+    "fileSize_megabytes": 0
+  },
+  {
+    "filePath": "clientGame/window/src/style/phaserStyle.js",
+    "fileHash": "e27a317f857fd809d81f881266dc2d95f4bd94501ac35c95285ca19a0cc10279",
+    "fileSize_bytes": 443,
+    "fileSize_megabytes": 0
+  },
+  {
+    "filePath": "clientGame/window/src/style/windowDimensions.js",
+    "fileHash": "7841cd368faccb4ac4ab32c3aafc90446f8c57b5aeeef47ba239d5ffd5a64d10",
+    "fileSize_bytes": 268,
+    "fileSize_megabytes": 0
+  },
+  {
+    "filePath": "clientGame/game.js",
+    "fileHash": "1522edbf4885a1de3af1e327e2fd044d5fdd1adc0f89fa10fb8e3af86228586c",
+    "fileSize_bytes": 121,
+    "fileSize_megabytes": 0
+  }
 ]

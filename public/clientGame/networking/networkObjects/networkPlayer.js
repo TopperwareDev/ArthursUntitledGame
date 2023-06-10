@@ -1,7 +1,7 @@
 class NetworkPlayer {
   constructor(player) {
     this.isOwner = true;
-    this.networkUpdateFrequency = 1; //# pr seccond
+    this.networkUpdateFrequency = 20; //# pr seccond
     this.previousNetworkUpdate = 0;
 
     this.player = player;

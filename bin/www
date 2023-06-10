@@ -83,23 +83,4 @@ function onListening() {
   var addr = server.address();
   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
   debug("Listening on " + bind);
-  serverStartUpText();
 }
-
-function serverStartUpText() {
-  console.clear();
-  console.log(`
-  
-  ______             __      __                                           
- /      \\           |  \\    |  \\                                          
-|  $$$$$$\\  ______  _| $$_   | $$____   __    __   ______   
-| $$__| $$ /      \\|   $$ \\  | $$    \\ |  \\  |  \\ /      \\       
-| $$    $$|  $$$$$$\\$$$$$$  | $$$$$$$\\| $$  | $$|  $$$$$$\\|        
-| $$$$$$$$| $$   \\$$ | $$ __ | $$  | $$| $$  | $$| $$   \\$$       
-| $$  | $$| $$       | $$|  \\| $$  | $$| $$__/ $$| $$            
-| $$  | $$| $$        \\$$  $$| $$  | $$ \\$$    $$| $$                  
- \\$$   \\$$ \\$$         \\$$$$  \\$$   \\$$  \\$$$$$$          
-                                                                                                                                          
-  `);
-}
-

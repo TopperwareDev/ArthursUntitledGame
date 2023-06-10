@@ -3,13 +3,13 @@
     A list of all required scripts can be found in clientGame/scripts.json
 */
 
-const jsonPath = "clientGame/scripts.json";
+const jsonFilePath = "clientGame/scripts.json";
 const delay = 1000;
 let total_scripts = 0;
 let downloaded_scripts = 0;
 let json;
 
-fetch(jsonPath)
+fetch(jsonFilePath)
   .then((response) => response.json())
   .then((data) => {
     showFiles(data);
@@ -21,7 +21,7 @@ function showFiles(json) {
   //Add css
   const downloadScriptCss = document.createElement("link");
   downloadScriptCss.rel = "stylesheet";
-  downloadScriptCss.href = "clientGame/preperation/css/showScripts.css";
+  downloadScriptCss.href = "clientGame/preparation/css/showScripts.css";
   document.body.appendChild(downloadScriptCss);
 
   //Total scripts text
@@ -35,11 +35,11 @@ function showFiles(json) {
   container.className = "container";
   document.body.appendChild(container);
 
-  json.forEach((script) => {
+  json.forEach((scriptJSON) => {
     const element = document.createElement("div");
     element.className = "element";
-    element.id = script;
-    element.innerHTML = extractFileName(script);
+    element.id = scriptJSON.fileHash;
+    element.innerHTML = extractFileName(scriptJSON.filePath);
     container.appendChild(element);
   });
 
@@ -50,12 +50,12 @@ function showFiles(json) {
 }
 
 function downloadScript() {
-  const scriptPath = json[downloaded_scripts];
+  const scriptJSON = json[downloaded_scripts];
   const script = document.createElement("script");
-  script.src = scriptPath;
+  script.src = scriptJSON.filePath;
   document.head.appendChild(script);
   script.addEventListener("load", () => {
-    const element = document.getElementById(scriptPath);
+    const element = document.getElementById(scriptJSON.fileHash);
     element.style.backgroundColor = "green";
     ++downloaded_scripts;
 

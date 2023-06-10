@@ -4,28 +4,25 @@ class NetworkplayersManager {
     this.mainScene = mainScene;
   }
 
-  networkPlayersUpdate(networkPlayers) {
-    if (networkPlayers.length == 0) {
+  networkPlayersUpdate(stringifiedNetworkPlayers) {
+    if (stringifiedNetworkPlayers.length == 0) {
       return;
     }
 
-    this.networkPlayers = [];
-    networkPlayers.forEach((networkPlayer) => {
-      const parsedNetworkPlayer = JSON.parse(networkPlayer);
-      this.networkPlayers.push(parsedNetworkPlayer);
-    });
+    this.networkPlayers = this.parseNetworkPlayers(stringifiedNetworkPlayers);
+    console.log(this.networkPlayers);
 
-    this.createPlayers();
+ 
   }
 
-  createPlayers() {
-
-    // Create new players and put them at coordinates
-    this.networkPlayers.forEach((networkPlayer) => {
-      const x = networkPlayer.playerX;
-      const y = networkPlayer.playerY;
-
-      this.mainScene.add.sprite(x, y, 'player');
-    });
+  parseNetworkPlayers(networkPlayers){
+    let parsedNetworkPlayers = [];
+    for(let i = 0; i < networkPlayers.length; ++i){
+      const parsedNetworkPlayer = JSON.parse(networkPlayers[i]);
+      parsedNetworkPlayers.push(parsedNetworkPlayer);
+      if(i == networkPlayers.length - 1){
+        return parsedNetworkPlayers;
+      }
+    }
   }
 }

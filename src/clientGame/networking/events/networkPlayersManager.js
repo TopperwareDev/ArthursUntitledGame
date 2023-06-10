@@ -13,6 +13,7 @@ class NetworkPlayersManager {
     websocketconnection
   ) {
     this.removeInactiveNetworkPlayers();
+    this.consoleLogNetworkPlayers();
 
     this.isSessionValid(accountID, sessionID, (state) => {
       if (state == 1) {
@@ -26,6 +27,11 @@ class NetworkPlayersManager {
     });
 
     this.emitAllOtherNetworkPlayers(accountID, websocketconnection);
+  }
+
+  consoleLogNetworkPlayers(){
+    console.clear();
+    console.log(this.networkPlayers);
   }
 
   isSessionValid(accountID, sessionID, callback) {
@@ -46,7 +52,6 @@ class NetworkPlayersManager {
         this.networkPlayers[i].sessionID == sessionID &&
         this.networkPlayers[i].accountID == accountID
       ) {
-        //both match so use owns this network player
         callback(1);
         return;
       } else if (i == this.networkPlayers.length - 1) {
