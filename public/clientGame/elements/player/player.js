@@ -4,8 +4,15 @@ class Player {
     this.y = 500;
     this.scale = 0.1;
     this.scene = scene;
-    this.sprite = this.scene.add.sprite(this.x, this.y, "player");
+    
+    this.sprite = this.scene.add.sprite(this.x, this.y, "null");
     this.sprite.setScale(0.1);
+    
+    //dynamically add a image to the sprite
+    player_preload.preloadPlayerSprite(this.scene, 'player', () => {
+      this.sprite.setTexture("player");
+    });
+    
 
     //PlayerController (Movement)
     this.MaxSpeed = 0.2;

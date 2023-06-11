@@ -10,9 +10,6 @@ class NetworkplayersManager {
     }
 
     this.networkPlayers = this.parseNetworkPlayers(stringifiedNetworkPlayers);
-    console.log(this.networkPlayers);
-
- 
   }
 
   parseNetworkPlayers(networkPlayers){

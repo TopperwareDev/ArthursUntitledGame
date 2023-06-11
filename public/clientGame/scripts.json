@@ -6,9 +6,21 @@
     "fileSize_megabytes": 2.49
   },
   {
+    "filePath": "clientGame/elements/nonUserPlayer/nonUserPlayer.js",
+    "fileHash": "4a121c916b516c386fbcde75987f7d88c5a522440a9ace6e4aa726aabf72e0a6",
+    "fileSize_bytes": 65,
+    "fileSize_megabytes": 0
+  },
+  {
+    "filePath": "clientGame/elements/nonUserPlayer/src/preload.js",
+    "fileHash": "b95985879eb99091104afa2dd49bb00f46c9049e52e10e2b679a895fb67ad500",
+    "fileSize_bytes": 168,
+    "fileSize_megabytes": 0
+  },
+  {
     "filePath": "clientGame/elements/player/player.js",
-    "fileHash": "8eff69f2f488acecbf9ac4575a3253e16a43593c159a37b46d294e78dab23918",
-    "fileSize_bytes": 941,
+    "fileHash": "508e5f8f78c63987746e7ee4db43f0e3536da6a4a4c986ab75147450763d87a5",
+    "fileSize_bytes": 1122,
     "fileSize_megabytes": 0
   },
   {
@@ -19,14 +31,14 @@
   },
   {
     "filePath": "clientGame/elements/player/src/preload.js",
-    "fileHash": "19fb4f2c67cd628edbe482c458b0d4b20138f7e64f491acf6979d518e7697d0f",
-    "fileSize_bytes": 110,
+    "fileHash": "39843d3bd7a5332f80e1fb102e4980ee97ec9502bf1796feec2a0249dc610034",
+    "fileSize_bytes": 174,
     "fileSize_megabytes": 0
   },
   {
     "filePath": "clientGame/networking/events/networkPlayersManager.js",
-    "fileHash": "51b1b931e29f522e84a413176a63b5b960b864bbe72ac3b9cf1d1cdb23a7a3f7",
-    "fileSize_bytes": 742,
+    "fileHash": "19e9d07aa86ae1806d7726a0482e5aad47fdd08c3a42d96c5b3dea5623e2b5d6",
+    "fileSize_bytes": 699,
     "fileSize_megabytes": 0
   },
   {
@@ -73,8 +85,8 @@
   },
   {
     "filePath": "clientGame/window/scenes/mainScene.js",
-    "fileHash": "4a0eb045cc2141be5db26ec489a687a392077c3a73c4f0a90ca63fbbea4f798b",
-    "fileSize_bytes": 448,
+    "fileHash": "badd33fc038cc20acc8dd18bcb05cd0da3c2a52eda3d450a866d9fc1ee7d1447",
+    "fileSize_bytes": 351,
     "fileSize_megabytes": 0
   },
   {
@@ -82,6 +94,12 @@
     "fileHash": "108407c401391845022159ab2f68cf109f42601edc3b25101210aea3b7062871",
     "fileSize_bytes": 95,
     "fileSize_megabytes": 0
+  },
+  {
+    "filePath": "clientGame/window/src/plugins/LoaderPlugin.js",
+    "fileHash": "bdde41acc5ef511873bb54454b21cfed6a6a82fbec5e158326dcf86d6c43c786",
+    "fileSize_bytes": 36386,
+    "fileSize_megabytes": 0.03
   },
   {
     "filePath": "clientGame/window/src/sceneManager.js",

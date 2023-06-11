@@ -1,5 +1,5 @@
 class nonUserPlayer{
-    constructor(){
+    constructor(scene){
         
     }
 }
