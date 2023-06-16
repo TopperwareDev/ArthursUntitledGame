@@ -1,6 +1,8 @@
 const crypto = require("crypto");
 const fs = require("fs");
 
+const defaultDirPath = __dirname + "/../worlds/";
+
 function createNewWorldDIR(worldID, callback) {
   /*
         Creates new world file structure and return world id
@@ -10,7 +12,6 @@ function createNewWorldDIR(worldID, callback) {
         if nonexisistng worldID is given then new world is created and new world ID is returned
     */
 
-  const defaultDirPath = __dirname + "/../worlds/";
   const worldDirPath = defaultDirPath + worldID;
 
   fs.access(worldDirPath, fs.constants.F_OK, (error) => {
@@ -27,8 +28,9 @@ function createNewWorldDIR(worldID, callback) {
 
   function createNewDir(defaultDirPath) {
     const uniqueId = crypto.randomBytes(16).toString("hex");
-    
+
     const worldDirPath = defaultDirPath + uniqueId;
+
     fs.mkdir(worldDirPath, (error) => {
       if (error) {
         console.log(error);
@@ -41,4 +43,14 @@ function createNewWorldDIR(worldID, callback) {
   }
 }
 
-module.exports = { createNewWorldDIR };
+function checkWorldsDir() {
+  /*
+    check if worlds dir is created 
+    if not created create new dir 
+  */
+  if (!fs.existsSync(defaultDirPath)) {
+    fs.mkdirSync(defaultDirPath);
+  }
+}
+
+module.exports = { createNewWorldDIR, checkWorldsDir };
