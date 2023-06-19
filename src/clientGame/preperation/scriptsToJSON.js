@@ -29,6 +29,7 @@ function findJSFiles(directoryPath, callback) {
           .replace(/\\/g, "/")
           .replace("public/", "");
         const fileJSON = {
+          fileName: path.basename(filePath),
           filePath: undefined,
           fileHash: undefined,
           fileSize_bytes: undefined,

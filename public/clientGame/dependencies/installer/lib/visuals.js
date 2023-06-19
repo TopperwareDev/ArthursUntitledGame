@@ -2,7 +2,7 @@
 
 const cssPath = "clientGame/dependencies/installer/css/showScripts.css";
 
-export function showFiles(json, total_scripts) {
+export function showFiles(json) {
     //Add css
     const downloadScriptCss = document.createElement("link");
     downloadScriptCss.rel = "stylesheet";
@@ -11,7 +11,7 @@ export function showFiles(json, total_scripts) {
   
     //Total scripts text
     const scriptsInfo = document.createElement("p");
-    total_scripts = json.length;
+    const total_scripts = json.length;
     scriptsInfo.innerHTML = "Total Scripts: " + total_scripts;
     document.body.appendChild(scriptsInfo);
   

@@ -5,15 +5,15 @@
 
 import { showFiles } from "./lib/visuals.js";
 import { downloadScripts } from "./lib/download.js";
+import { startGame } from "../../game.js";
 
 const jsonFilePath = "clientGame/scripts.json";
-let total_scripts = 0;
 
 fetch(jsonFilePath)
   .then((response) => response.json())
   .then((data) => {
-    showFiles(data, total_scripts);
-    downloadScripts(data, total_scripts, () => {
-      console.log('done');
+    showFiles(data);
+    downloadScripts(data, function() {
+      startGame();
     });
   });
