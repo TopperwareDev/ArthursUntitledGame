@@ -4,9 +4,10 @@ const crypto = require("crypto");
 
 const directory = "./public/clientGame";
 const jsonFilePath = "./public/clientGame/scripts.json";
-const directoryIgnore = "preparation";
+const fileIgnore = "public/clientGame/dependencies/installer/index.js";
 const lowPriorityIndicator = "//LAST//";
-const highPriorityIndicator = "//HIGH//";
+const isLibIndicator = "//LIB//"; //Must be imported first
+const notModuleIndicator = "//NOTMODULE//";
 
 function findJSFiles(directoryPath, callback) {
   const filesArray = [];
@@ -21,12 +22,8 @@ function findJSFiles(directoryPath, callback) {
       const fileStat = fs.statSync(filePath);
 
       if (fileStat.isDirectory()) {
-        const directoryName = path.basename(filePath);
-
-        if (directoryName !== directoryIgnore) {
-          traverseDirectory(filePath);
-        }
-      } else if (filePath.endsWith(".js")) {
+        traverseDirectory(filePath);
+      } else if (filePath.endsWith(".js") && filePath != fileIgnore) {
         const fileContent = fs.readFileSync(filePath, "utf-8");
         const modifiedPath = filePath
           .replace(/\\/g, "/")
@@ -36,17 +33,24 @@ function findJSFiles(directoryPath, callback) {
           fileHash: undefined,
           fileSize_bytes: undefined,
           fileSize_megabytes: undefined,
+          isModule: false,
+          isLibrary: false,
         };
 
         fileJSON.fileHash = calculateSHA256Hash(fileContent);
         fileJSON.fileSize_bytes = fileStat.size;
         fileJSON.fileSize_megabytes = bytesToMegabytes(fileStat.size);
 
+        if (!fileContent.includes(notModuleIndicator)) {
+          fileJSON.isModule = true;
+        }
+
         if (fileContent.includes(lowPriorityIndicator)) {
           fileJSON.filePath = modifiedPath;
           filesArrayLowPriority.push(fileJSON);
-        } else if (fileContent.includes(highPriorityIndicator)) {
+        } else if (fileContent.includes(isLibIndicator)) {
           fileJSON.filePath = modifiedPath;
+          fileJSON.isLibrary = true;
           filesArrayHighPriority.push(fileJSON);
         } else {
           fileJSON.filePath = modifiedPath;

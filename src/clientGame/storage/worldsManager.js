@@ -1,5 +1,5 @@
 const networkManager = require("../networking/networkManager");
-const worldDirManager = require("./storage/src/worldDirManager");
+const worldDirManager = require("./src/worldDirManager");
 
 class WorldManager {
   constructor(worldID) {

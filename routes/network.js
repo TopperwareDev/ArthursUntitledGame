@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const WM = require("../src/clientGame/world/worldManager");
+const WM = require("../src/clientGame/storage/worldsManager");
 
 const worldManager = new WM.WorldManager('7271b62e5135bc0920fdbc34cf2816e8');
 
