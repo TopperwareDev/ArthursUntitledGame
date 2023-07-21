@@ -1,17 +1,11 @@
-/*
-    Phaser.js game, compiled into a webpack
-*/
 
-// import {Phaser} from "./src/utils/phaser.min.js";
-// ^^^^
-// ||||
-// Do not import Phaser, as shown above. It impacts performance when compiling, hence phaser.js 
-// must be imported in master html file.
+import { update_window_data } from "./src/lib/window_data";
 
-// Create a Phaser game configuration object
+const browser_window_configuration = update_window_data();
+
 const config = {
-  width: 800,
-  height: 600,
+  height: browser_window_configuration.browser_height,
+  width: browser_window_configuration.browser_width,
   type: Phaser.AUTO,
   // Add game scenes, assets, and oather configurations as needed
   // ...

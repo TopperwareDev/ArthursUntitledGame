@@ -3,9 +3,9 @@
 */
 
 export function get_absolute_height(){
-    return window.
+    return window.innerHeight;
 }
 
 export function get_absolute_width(){
-
+    return window.innerWidth;
 }
