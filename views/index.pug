@@ -1,13 +1,13 @@
 extends presets/defaults/layout
 
 block content
-  link(rel='stylesheet' href='/clientWebpage/stylesheets/standard.css')
-  link(rel='stylesheet' href='/clientWebpage/stylesheets/backgroundrain.css')
+  link(rel='stylesheet' href='/website/stylesheets/standard.css')
+  link(rel='stylesheet' href='/website/stylesheets/backgroundrain.css')
   .contentcenter
     h1= title
     .coverimg
     p(class='paragraphShort') You must have an account before playing #{title}, click below to create an account or play.
-    a(href="/window") 
+    a(href="/gameplay") 
       if username != undefined  
         button(class='buttonLarge flashGreen') PLAY
       else  

@@ -17,6 +17,6 @@
     "ws": "^8.13.0"
   },
   "nodemonConfig": {
-    "ignore": ["./public"]
+    "ignore": ["./public","./client_game_development"]
   }
 }

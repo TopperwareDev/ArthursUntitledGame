@@ -5,8 +5,6 @@ const session = require("express-session");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-const preperationManager = require("./src/clientGame/preperation/preperationManager");
-
 var app = express();
 
 //session
@@ -29,14 +27,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-preperationManager.init(() => {
-  //initiate routes
-  routes(app);
+//initiate routes
+routes(app);
 
-  // catch 404 and forward to error handler
-  app.use(function (req, res, next) {
-    next(createError(404));
-  });
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  next(createError(404));
 });
 
 // error handler
@@ -53,16 +49,16 @@ app.use(function (err, req, res, next) {
 module.exports = app;
 
 function routes(app) {
-  const authenticationMiddleware = require("./src/database/authentication/authenticationMiddleware");
-  var indexRouter = require("./routes/index");
-  var windowRouter = require("./routes/window");
-  var accountRouter = require("./routes/account");
-  var networkRouter = require("./routes/network");
 
+  var indexRouter = require("./routes/index");
   app.use("/", indexRouter);
-  app.use("/window", authenticationMiddleware.isauthenticated, windowRouter);
+
+  var accountRouter = require("./routes/account");
   app.use("/account", accountRouter);
-  app.use("/network", networkRouter);
+
+  const authenticationMiddleware = require("./src/auth/authenticationMiddleware");
+  var gameplayRouter = require("./routes/gameplay");
+  app.use("/gameplay", authenticationMiddleware.isauthenticated, gameplayRouter);
 }
 
 function serverStartUpText() {
