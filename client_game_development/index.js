@@ -8,6 +8,13 @@
 // Do not import Phaser, as shown above. It impacts performance when compiling, hence phaser.js 
 // must be imported in master html file.
 
-import game_config from "./configuration/game_config.json"
+// Create a Phaser game configuration object
+const config = {
+  width: 800,
+  height: 600,
+  type: Phaser.AUTO,
+  // Add game scenes, assets, and oather configurations as needed
+  // ...
+};
 
-const game = new Phaser.Game(game_config);
+const game = new Phaser.Game(config);
