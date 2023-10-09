@@ -76,4 +76,5 @@ function serverStartUpText() {
  \\$$   \\$$ \\$$         \\$$$$  \\$$   \\$$  \\$$$$$$          
                                                                                                                                           
   `);
+  console.log("Time of last refresh: " + 123123);
 }
